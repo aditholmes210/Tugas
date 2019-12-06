@@ -6,11 +6,11 @@ public class Biodata{
 		int bulan = 9;
 		int tahun = 1994;
 		double umur = 25.16;
-		String alamat = "Jl. Tanjung I blok K3 no. 4 Sektor 1.1, BSD";
+		String alamat = "Jl. Tanjung I blok K3 no. 4 Sektor 1.1";
 		
-		System.out.println("Nama : "+nama);
+		System.out.println("Nama                  : "+nama);
 		System.out.println("Tempat, Tanggal Lahir : "+tempat +"," +tanggal +"-" +bulan +"-" +tahun);
-		System.out.println("Umur : "+umur);
-		System.out.println("Alamat : "+alamat);
+		System.out.println("Umur                  : "+umur +"tahun");
+		System.out.println("Alamat                : "+alamat +", BSD");
 	}
 }

@@ -10,7 +10,7 @@ public class Biodata{
 		
 		System.out.println("Nama                  : "+nama);
 		System.out.println("Tempat, Tanggal Lahir : "+tempat +"," +tanggal +"-" +bulan +"-" +tahun);
-		System.out.println("Umur                  : "+umur +"tahun");
+		System.out.println("Umur                  : "+umur +" tahun");
 		System.out.println("Alamat                : "+alamat +", BSD");
 	}
 }

@@ -21,34 +21,34 @@ public class Test1{
 			Scanner input = new Scanner(System.in);
 			print("Pilih Menu :");
 			print("======================");
-			print("1. Hitung luas segitiga");
-			print("2. Hitung volume balok");
-			print("3. Hitung prisma segitiga");
-			print("4. Hitung volume kerucut");
+			print("1. Luas segitiga");
+			print("2. Volume balok");
+			print("3. Prisma segitiga");
+			print("4. Volume kerucut");
 			print("5. Exit");
 			geser("Masukkan pilihan : ");
 			int pick = input.nextInt();
 			switch(pick){
 				case 1:
-				geser("Masukkan nilai a : "); double a = input.nextDouble();
-				geser("Masukkan nilai t : "); double t = input.nextDouble();
+				geser("Masukkan nilai alas : "); double a = input.nextDouble();
+				geser("Masukkan nilai tinggi : "); double t = input.nextDouble();
 				print(LuasSegi3(a,t));
 				break;
 				case 2:
-				geser("Masukkan nilai p : "); double p = input.nextDouble();
-				geser("Masukkan nilai l : "); double l = input.nextDouble();
-				geser("Masukkan nilai t : "); double ta = input.nextDouble();
+				geser("Masukkan nilai panjang : "); double p = input.nextDouble();
+				geser("Masukkan nilai lebar : "); double l = input.nextDouble();
+				geser("Masukkan nilai tinggi : "); double ta = input.nextDouble();
 				print(VolBal(p,l,ta));
 				break;
 				case 3:
-				geser("Masukkan nilai p : "); double pa = input.nextDouble();
-				geser("Masukkan nilai l : "); double la = input.nextDouble();
-				geser("Masukkan nilai t : "); double tb = input.nextDouble();
+				geser("Masukkan nilai panjang : "); double pa = input.nextDouble();
+				geser("Masukkan nilai lebar : "); double la = input.nextDouble();
+				geser("Masukkan nilai tinggi : "); double tb = input.nextDouble();
 				print(Prism(pa,la,tb));
 				break;
 				case 4:
-				geser("Masukkan nilai r : "); double r = input.nextDouble();
-				geser("Masukkan nilai t : "); double tc = input.nextDouble();
+				geser("Masukkan nilai jari-jari : "); double r = input.nextDouble();
+				geser("Masukkan nilai tinggi : "); double tc = input.nextDouble();
 				print(VolKer(r,tc));
 				break;
 				default:

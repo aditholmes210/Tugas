@@ -34,6 +34,7 @@ public class Program{
 		}
 		
 		private static void buku(){
+			HashMap<String, Peminjaman> listTransaksi = new HashMap<String, Peminjaman>();
 			Buku buku1 = new Buku("Sherlock Holmes - The Hound of Baskerville", "978-3-16-1648410-0", "Sir Arthur Conan Doyle", "Gramedia", 375, 2004, 10);
 			Buku buku2 = new Buku("Sherlock Holmes - The Sign of Four", "978-3-16-1648430-0", "Sir Arthur Conan Doyle", "Gramedia", 425, 2005, 5);
 			/*HashMap<String, String> people = new HashMap<String, String>();
@@ -69,41 +70,74 @@ public class Program{
 				System.out.println();
 			}
 			Scanner input = new Scanner(System.in);
-			//input isbn
-			System.out.println("Masukkan data buku yang mau dipinjam : ");
-			String ISBN = input.nextLine();
-			//cek buku dengan isbn tersebut ada atau tidak
 			Peminjaman transaction = new Peminjaman(fellow.get("G021"));
 			transaction.setKodeTransaksi();
-			System.out.println(transaction.getKodeTransaksi());
-			if(bookcase.containsKey(ISBN)){
-				//transaksi buku dipinjam
-				//jika buku ditemukan kurangi stock buku
-				System.out.println("Buku ada");
-				Buku books = bookcase.get(ISBN);
-				books.dipinjam(); //utk mengurangi stock
-				
-				/*String judul = bookcase.get(ISBN).getJudul();
-				String ISBND = bookcase.get(ISBN).getISBN();
-				String penulis = bookcase.get(ISBN).getPenulis();
-				String penerbit = bookcase.get(ISBN).getPenerbit();
-				int jmlHal = bookcase.get(ISBN).getJmlHal();
-				int thnTerbit = bookcase.get(ISBN).getThnTerbit();
-				int stock = bookcase.get(ISBN).getStock();
-				System.out.println("Judul Buku       : "+judul);
-				System.out.println("No. ISBN         : "+ISBND);
-				System.out.println("Nama Penulis     : "+penulis);
-				System.out.println("Nama Penerbit    : "+penerbit);
-				System.out.println("Jumlah Halaman   : "+jmlHal);
-				System.out.println("Tahun Terbit     : "+thnTerbit);
-				System.out.println("Jumlah Stock     : "+stock);
-				System.out.println();*/
-				//masukkan buku ke list buku yg ada di transaksi
-				transaction.addBook(ISBN, books);
+			//System.out.println(transaction.getKodeTransaksi());
+			boolean runPinjam = true;
+			while(runPinjam){
+				//input isbn
+				System.out.print("Masukkan data buku yang mau dipinjam : ");
+				String ISBN = input.nextLine();
+				//cek buku dengan isbn tersebut ada atau tidak
+				if(bookcase.containsKey(ISBN)){
+					//transaksi buku dipinjam
+					//jika buku ditemukan kurangi stock buku
+					//System.out.println("Buku ada");
+					Buku books = bookcase.get(ISBN);
+					books.dipinjam(); //utk mengurangi stock
+					
+					/*String judul = bookcase.get(ISBN).getJudul();
+					String ISBND = bookcase.get(ISBN).getISBN();
+					String penulis = bookcase.get(ISBN).getPenulis();
+					String penerbit = bookcase.get(ISBN).getPenerbit();
+					int jmlHal = bookcase.get(ISBN).getJmlHal();
+					int thnTerbit = bookcase.get(ISBN).getThnTerbit();
+					int stock = bookcase.get(ISBN).getStock();
+					System.out.println("Judul Buku       : "+judul);
+					System.out.println("No. ISBN         : "+ISBND);
+					System.out.println("Nama Penulis     : "+penulis);
+					System.out.println("Nama Penerbit    : "+penerbit);
+					System.out.println("Jumlah Halaman   : "+jmlHal);
+					System.out.println("Tahun Terbit     : "+thnTerbit);
+					System.out.println("Jumlah Stock     : "+stock);
+					System.out.println();*/
+					//masukkan buku ke list buku yg ada di transaksi
+					transaction.addBook(ISBN, books);
+				}
+				else{
+					//jika buku tidak ditemukan tampilkan pesan
+					System.out.println("Buku tidak ada");
+				}
+				System.out.print("Apakah masih ingin pinjam buku lain? [Y/N] : ");
+				String answer = input.nextLine();
+				if(answer.equalsIgnoreCase("N")){
+					runPinjam = false;
+				}
+			}
+			if(transaction.getBooks().size() > 0){
+				for(String i : transaction.getBooks().keySet()){
+					String judul = bookcase.get(i).getJudul();
+					String ISBN = bookcase.get(i).getISBN();
+					String penulis = bookcase.get(i).getPenulis();
+					//print variabel
+					System.out.println();
+					System.out.println("Judul Buku       : "+judul);
+					System.out.println("No. ISBN         : "+ISBN);
+					System.out.println("Nama Penulis     : "+penulis);
+					System.out.println();
+				}
+				System.out.print("Apakah data diatas sudah benar? [Y/N] : ");
+				String answer = input.nextLine();
+				if(answer.equalsIgnoreCase("Y")){
+					//masukkan data transaksi ke list transaksi - HashMap
+					listTransaksi.put(transaction.getKodeTransaksi(), transaction);
+				}
+				else{
+					System.out.println("Transaksi dibatalkan");
+				}
 			}
 			else{
-				//jika buku tidak ditemukan tampilkan pesan
-				System.out.println("Buku tidak ada");
+				System.out.println("Tidak ada transaksi");
 			}
 		}
 

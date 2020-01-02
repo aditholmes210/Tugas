@@ -2,14 +2,16 @@ package app.data;
 
 public class Buku{
 	private String judul, ISBN, penulis, penerbit;
-	private int jmlHal;
+	private int jmlHal, thnTerbit, stock;
 	
-	public Buku(String judul, String ISBN, String penulis, String penerbit, int jmlHal){
+	public Buku(String judul, String ISBN, String penulis, String penerbit, int jmlHal, int tahun, int stock){
 		this.judul = judul;
 		this.ISBN = ISBN;
 		this.penulis = penulis;
 		this.penerbit = penerbit;
 		this.jmlHal = jmlHal;
+		this.thnTerbit = tahun;
+		this.stock = stock;
 	}
 	
 	public String getJudul(){
@@ -45,5 +47,23 @@ public class Buku{
 	}
 	public void setJmlHal(int jmlHal){
 		this.jmlHal = jmlHal;
+	}
+	
+	public int getThnTerbit(){
+		return thnTerbit;
+	}
+	public void setThnTerbit(int tahun){
+		this.thnTerbit = tahun;
+	}
+	
+	public int getStock(){
+		return stock;
+	}
+	public void setStock(int stock){
+		this.stock = stock;
+	}
+	
+	public void dipinjam(){
+		this.stock--;
 	}
 }

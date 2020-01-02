@@ -1,36 +1,37 @@
 package app;
 import app.data.Buku;
-import app.data.transaction;
-//import app.data.Member;
+import app.transaction.Peminjaman;
+import app.data.Member;
 import java.util.Scanner;
 //import hashmap
 import java.util.HashMap;
 public class Program{
+	private static HashMap<String, Member> fellow = new HashMap<String, Member>();
 	public static void main(String[] args){
+		member();
 		buku();
-		//member();
 	}
 		
-		/*private static void member(){
-			Member member1 = new Member(1, "Adit", "Male", "BSD");
-			Member member2 = new Member(2, "Benny", "Male", "Jatim");
+		private static void member(){
+			Member member1 = new Member("G021", "Adit", "Male", "BSD");
+			Member member2 = new Member("G022", "Benny", "Male", "Jatim");
 			
-			HashMap<int, Member> fellow = new HashMap<int, Member>();
+			
 			fellow.put(member1.getID(), member1);
 			fellow.put(member2.getID(), member2);
 			
-			for (String key : fellow.keySet()){
+			/*for (String key : fellow.keySet()){
 				String ID = fellow.get(key).getID();
 				String Name = fellow.get(key).getName();
 				String Gender = fellow.get(key).getGender();
-				String Address = fellow.get(key).getAdress();
+				String Address = fellow.get(key).getAddress();
 				
 				System.out.println("ID Member : "+ID);
 				System.out.println("Nama      : "+Name);
 				System.out.println("Gender    : "+Gender);
 				System.out.println("Alamat    : "+Address);
-			}
-		}*/
+			}*/
+		}
 		
 		private static void buku(){
 			Buku buku1 = new Buku("Sherlock Holmes - The Hound of Baskerville", "978-3-16-1648410-0", "Sir Arthur Conan Doyle", "Gramedia", 375, 2004, 10);
@@ -72,17 +73,17 @@ public class Program{
 			System.out.println("Masukkan data buku yang mau dipinjam : ");
 			String ISBN = input.nextLine();
 			//cek buku dengan isbn tersebut ada atau tidak
-			Peminjaman transaction = new Peminjaman();
+			Peminjaman transaction = new Peminjaman(fellow.get("G021"));
 			transaction.setKodeTransaksi();
 			System.out.println(transaction.getKodeTransaksi());
 			if(bookcase.containsKey(ISBN)){
 				//transaksi buku dipinjam
 				//jika buku ditemukan kurangi stock buku
 				System.out.println("Buku ada");
-				Buku borrowedBook = bookcase.get(ISBN);
-				borrowedBook.dipinjam();
+				Buku books = bookcase.get(ISBN);
+				books.dipinjam(); //utk mengurangi stock
 				
-				String judul = bookcase.get(ISBN).getJudul();
+				/*String judul = bookcase.get(ISBN).getJudul();
 				String ISBND = bookcase.get(ISBN).getISBN();
 				String penulis = bookcase.get(ISBN).getPenulis();
 				String penerbit = bookcase.get(ISBN).getPenerbit();
@@ -96,8 +97,9 @@ public class Program{
 				System.out.println("Jumlah Halaman   : "+jmlHal);
 				System.out.println("Tahun Terbit     : "+thnTerbit);
 				System.out.println("Jumlah Stock     : "+stock);
-				System.out.println();
-				
+				System.out.println();*/
+				//masukkan buku ke list buku yg ada di transaksi
+				transaction.addBook(ISBN, books);
 			}
 			else{
 				//jika buku tidak ditemukan tampilkan pesan

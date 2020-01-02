@@ -1,22 +1,22 @@
 package app.data;
 
 public class Member{ //abstract class tidak bisa dibuat objectnya
-	private int ID;
+	private String ID;
 	private String Name;
 	private String Gender;
 	private String Address;
 	
-	public Member(int id, String name, String gender, String address){ 
+	public Member(String id, String name, String gender, String address){ 
 		this.ID = id;
 		this.Name = name;
 		this.Gender = gender;
 		this.Address = address;
 	}
 	
-	public int getID(){
+	public String getID(){
 		return ID;
 	}
-	public void setID(int id){
+	public void setID(String id){
 		this.ID = id;
 	}
 	
